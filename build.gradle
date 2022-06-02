@@ -1,0 +1,44 @@
+plugins {
+	// websecurity 에 extends한 websecurityConfigyrAdapter를 쓰기위해 버전을 2.6.8로 맞춤
+	id 'org.springframework.boot' version '2.6.8'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.Personal'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// Thymeleaf (뷰 템플릿 엔진) 프론트엔드 개발자와 협업시 template에 넣어서 한꺼번에 보기위한 뷰템플릿 엔진(GetMapping으로 쉽게 가능하게함)
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	// 아이디 중복체크, 유효성 검사 처리
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// 인증관련 Web Security 의존성 추가
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// jwt token관련 의존성 추가
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
